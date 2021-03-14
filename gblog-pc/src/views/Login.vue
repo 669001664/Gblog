@@ -49,8 +49,9 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          let { status,payload } = res.data;
+          let { token, status, payload } = res.data;
           if (status == "success") {
+            this.$store.dispatch("setToken", token);
             this.$store.dispatch("setUserId", payload);
             this.$router.push("/pusharticle");
           } else {

@@ -9,6 +9,8 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     function (config) {
+        let token = localStorage.getItem("mytoken");
+        config.headers["Authorization"] = "Bearer " + token;
         return config;
     },
     function (error) {

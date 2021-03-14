@@ -1,4 +1,5 @@
 const model = require('../models/userModel')
+const { createToken } = require('../auth');
 
 module.exports = {
     async login(ctx) {
@@ -9,9 +10,11 @@ module.exports = {
                 userId: results[0].user_id,
                 username
             }
+            var token = createToken(payload)
             ctx.body = {
                 status: 'success',
-                payload
+                payload,
+                token
             }
         } else {
             ctx.body = {
